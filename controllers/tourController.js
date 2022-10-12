@@ -12,13 +12,14 @@ exports.checkID = (req, res, next, val) => {
     next();
 }
 
-exports.checkBody = (req, res) => {
+exports.checkBody = (req, res, next) => {
     if (!(req.body.id || req.body.price)) {
         res.status(400).json({
             status: "fail",
             message: "Bad request"
         });
     }
+    next();
 };
 
 exports.getAllTours = (req, res) => {
