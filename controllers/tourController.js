@@ -12,6 +12,15 @@ exports.checkID = (req, res, next, val) => {
     next();
 }
 
+exports.checkBody = (req, res) => {
+    if (!(req.body.id || req.body.price)) {
+        res.status(400).json({
+            status: "fail",
+            message: "Bad request"
+        });
+    }
+};
+
 exports.getAllTours = (req, res) => {
     res.status(200).json({
         status: "success",
