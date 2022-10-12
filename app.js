@@ -6,7 +6,10 @@ const tourRouter = require(`${__dirname}/routes/tourRoutes`);
 const userRouter = require(`${__dirname}/routes/userRoutes`);
 
 // MIDDLEWARES
-app.use(morgan('dev'));
+console.log(process.env.NODE_ENV);
+if (process.env.NODE_ENV === "development") {
+    app.use(morgan('dev'));
+}
 
 app.use(express.json());
 
