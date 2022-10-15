@@ -3,7 +3,7 @@ const express = require('express');
 const router = express.Router();
 const tourController = require(`${__dirname}/../controllers/tourController`);
 
-router.param('id', tourController.checkID);
+// router.param('id', tourController.checkID);
 
 router
     .route('/')
