@@ -14,15 +14,16 @@ const Tour = require(`${__dirname}/../models/tourModel`);
 //     next();
 // }
 
-exports.checkBody = (req, res, next) => {
-    if (!req.body.name || !req.body.price) {
-        return res.status(400).json({
-            status: "fail",
-            message: "No price or name"
-        });
-    }
-    next();
-};
+// Example for explaining middlewares
+// exports.checkBody = (req, res, next) => {
+//     if (!req.body.name || !req.body.price) {
+//         return res.status(400).json({
+//             status: "fail",
+//             message: "No price or name"
+//         });
+//     }
+//     next();
+// };
 
 exports.getAllTours = (req, res) => {
     res.status(200).json({
@@ -44,7 +45,22 @@ exports.getTour = (req, res) => {
     });
 };
 
-exports.createTour = (req, res) => {
+exports.createTour = async (req, res) => {
+    try {
+        const newTour = await Tour.create(req.body);
+        res.status(201).json({
+            status: "success",
+            data: {
+                tour: newTour
+            }
+        });
+    }
+    catch (err) {
+        res.status(400).json({
+            status: "fail",
+            message: err
+        });
+    }
     // const newId = tours[tours.length - 1].id + 1;
     // const newTour = Object.assign({ id: newId }, req.body);
     // tours.push(newTour);
