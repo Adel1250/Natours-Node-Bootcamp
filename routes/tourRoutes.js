@@ -5,6 +5,8 @@ const tourController = require(`${__dirname}/../controllers/tourController`);
 
 // router.param('id', tourController.checkID);
 
+router.route('/top-5-tours').get(tourController.alias, tourController.getAllTours);
+
 router
     .route('/')
     .get(tourController.getAllTours)

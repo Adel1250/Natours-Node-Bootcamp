@@ -2,6 +2,13 @@
 // const tours = JSON.parse(fs.readFileSync(`${__dirname}/../dev-data/data/tours-simple.json`));
 const Tour = require(`${__dirname}/../models/tourModel`);
 
+exports.alias = (req, res, next) => {
+    req.query.sort = '-ratingsAverage,price';
+    req.query.limit = '5';
+    req.query.fields = 'ratingsAverage,name,price,summary';
+    next();
+}
+
 // Example for explaining middlewares
 // exports.checkID = (req, res, next, val) => {
 //     console.log(`The id of the tour is: ${val}`);
